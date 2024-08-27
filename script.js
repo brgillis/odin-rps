@@ -84,10 +84,10 @@ function playRound(sHumanChoice, sComputerChoice) {
 
   // Log the relevant message depending on the result
   if (iResult > 0) {
-    console.log("You win - " + sHumanChoice + " beats " + sComputerChoice) + "!";
+    console.log("You win - " + sHumanChoice + " beats " + sComputerChoice + "!");
     ++iHumanScore;
   } else if (iResult < 0) {
-    console.log("You lose - " + sComputerChoice + " beats " + sHumanChoice) + "!";
+    console.log("You lose - " + sComputerChoice + " beats " + sHumanChoice + "!");
     ++iComputerScore;
   } else {
     console.log("Draw - you both picked " + sHumanChoice + "!")
