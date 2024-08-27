@@ -1,5 +1,5 @@
-# Odin-RPS
-==========
+Odin-RPS
+========
 
 The published version of this project can be found at: http://brgillis.github.io/odin-rps
 
