@@ -19,37 +19,6 @@ function getComputerChoice() {
   return sChoice;
 }
 
-function getHumanChoice () {
-
-  // Prompt the user for their choice
-  let bValidChoice = false;
-  let sChoice;
-  do {
-    let sRawChoice = prompt("Choose one of rock (r), paper (p), or scissors (s): ")
-    sRawChoice = sRawChoice.toLowerCase();
-
-    if(sRawChoice.length == 0)
-      continue;
-
-    // Just check if the first letter matches one of the options, and use that
-    if(sRawChoice[0] == 'r') {
-      sChoice = "rock";
-      bValidChoice = true;
-    } else if(sRawChoice[0] == 'p') {
-      sChoice = "paper";
-      bValidChoice = true;
-    } else if(sRawChoice[0] == 's') {
-      sChoice = "scissors";
-      bValidChoice = true;
-    }
-
-    // If nothing matches, we'll pass through and continue the loop until we get something that does
-
-  } while(!bValidChoice);
-
-  return sChoice;
-}
-
 function rpsBeats(sFirstChoice, sSecondChoice) {
   // Function to compare two RPS values and say whether the first wins against the second
   // Returns an int:
@@ -77,20 +46,43 @@ function rpsBeats(sFirstChoice, sSecondChoice) {
   return -1;
 }
 
-function playRound(sHumanChoice, sComputerChoice) {
+// Hook up the results and score displays
+const roundResults = document.querySelector(".round-results");
+const humanScore = document.querySelector(".human-score")
+const computerScore = document.querySelector(".computer-score")
+
+function playRound(sHumanChoice) {
+
+  // Generate a random computer choice
+  let sComputerChoice = getComputerChoice();
 
   // Get the result of the comparison
   let iResult = rpsBeats(sHumanChoice, sComputerChoice);
 
   // Log the relevant message depending on the result
   if (iResult > 0) {
-    console.log("You win - " + sHumanChoice + " beats " + sComputerChoice + "!");
+    roundResults.textContent = "You win - " + sHumanChoice + " beats " + sComputerChoice + "!";
     ++iHumanScore;
   } else if (iResult < 0) {
-    console.log("You lose - " + sComputerChoice + " beats " + sHumanChoice + "!");
+    roundResults.textContent = "You lose - " + sComputerChoice + " beats " + sHumanChoice + "!";
     ++iComputerScore;
   } else {
-    console.log("Draw - you both picked " + sHumanChoice + "!")
+    roundResults.textContent = "Draw - you both picked " + sHumanChoice + "!";
   }
 
+  // Update the score display
+  humanScore.textContent = iHumanScore;
+  computerScore.textContent = iComputerScore;
+
 }
+
+// Hook up the buttons to the logic to play a round
+
+const rockButton = document.querySelector(".btn-rock");
+rockButton.addEventListener("click", () => {playRound("rock");})
+
+const paperButton = document.querySelector(".btn-paper");
+paperButton.addEventListener("click", () => {playRound("paper");})
+
+const scissorsButton = document.querySelector(".btn-scissors");
+scissorsButton.addEventListener("click", () => {playRound("scissors");})
