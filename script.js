@@ -94,13 +94,3 @@ function playRound(sHumanChoice, sComputerChoice) {
   }
 
 }
-
-function playGame () {
-  // Play 5 rounds of the game
-  for (let iRound = 1; iRound <= 5; iRound++) {
-    console.log("Round " + iRound + ":")
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("Your score: " + iHumanScore)
-    console.log("Computer score: " + iComputerScore)
-  }
-}
