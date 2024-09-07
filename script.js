@@ -51,7 +51,12 @@ const roundResults = document.querySelector(".round-results");
 const humanScore = document.querySelector(".human-score");
 const computerScore = document.querySelector(".computer-score");
 
+let gameIsActive = true;
+
 function playRound(sHumanChoice) {
+
+  // Do nothing if the game is inactive
+  if (!gameIsActive) return;
 
   // Generate a random computer choice
   let sComputerChoice = getComputerChoice();
@@ -74,7 +79,9 @@ function playRound(sHumanChoice) {
   humanScore.textContent = iHumanScore;
   computerScore.textContent = iComputerScore;
 
+  // Check if the game is finished
   if (iHumanScore >= 5 || iComputerScore >= 5) {
+    gameIsActive = false;
     let winnerAnnouncement = document.createElement("p");
     if (iHumanScore >= 5) {
       winnerAnnouncement.textContent = "Congratulations, you won!";
