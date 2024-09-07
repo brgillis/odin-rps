@@ -48,8 +48,8 @@ function rpsBeats(sFirstChoice, sSecondChoice) {
 
 // Hook up the results and score displays
 const roundResults = document.querySelector(".round-results");
-const humanScore = document.querySelector(".human-score")
-const computerScore = document.querySelector(".computer-score")
+const humanScore = document.querySelector(".human-score");
+const computerScore = document.querySelector(".computer-score");
 
 function playRound(sHumanChoice) {
 
@@ -73,6 +73,16 @@ function playRound(sHumanChoice) {
   // Update the score display
   humanScore.textContent = iHumanScore;
   computerScore.textContent = iComputerScore;
+
+  if (iHumanScore >= 5 || iComputerScore >= 5) {
+    let winnerAnnouncement = document.createElement("p");
+    if (iHumanScore >= 5) {
+      winnerAnnouncement.textContent = "Congratulations, you won!";
+    } else {
+      winnerAnnouncement.textContent = "Oh no, the computer won!";
+    }
+    document.querySelector(".score-display").appendChild(winnerAnnouncement);
+  }
 
 }
 
