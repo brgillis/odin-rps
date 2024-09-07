@@ -1,6 +1,3 @@
-let iHumanScore = 0;
-let iComputerScore = 0;
-
 function getComputerChoice() {
 
   // We have three choices, so pick one of three random integers
@@ -52,6 +49,8 @@ const humanScore = document.querySelector(".human-score");
 const computerScore = document.querySelector(".computer-score");
 
 let gameIsActive = true;
+let iHumanScore = 0;
+let iComputerScore = 0;
 
 function playRound(sHumanChoice) {
 
@@ -81,14 +80,35 @@ function playRound(sHumanChoice) {
 
   // Check if the game is finished
   if (iHumanScore >= 5 || iComputerScore >= 5) {
+
     gameIsActive = false;
+
+    // Add an element to announce the winner
     let winnerAnnouncement = document.createElement("p");
     if (iHumanScore >= 5) {
       winnerAnnouncement.textContent = "Congratulations, you won!";
     } else {
       winnerAnnouncement.textContent = "Oh no, the computer won!";
     }
-    document.querySelector(".score-display").appendChild(winnerAnnouncement);
+    const scoreDisplay = document.querySelector(".score-display");
+    scoreDisplay.appendChild(winnerAnnouncement);
+
+    // Add a button to reset the game
+    let resetButton = document.createElement("button");
+    resetButton.textContent = "Reset Game";
+    resetButton.addEventListener("click", () => {
+        gameIsActive = true;
+        iHumanScore = 0;
+        iComputerScore = 0;
+
+        roundResults.textContent = "";
+        humanScore.textContent = iHumanScore;
+        iComputerScore.textContent = iComputerScore;
+
+        winnerAnnouncement.remove();
+        resetButton.remove();
+    });
+    scoreDisplay.appendChild(resetButton);
   }
 
 }
